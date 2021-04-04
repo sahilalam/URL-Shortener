@@ -45,7 +45,7 @@ export default class RegisterUser extends React.Component{
         }
         body=body.join('&');
         try{
-            let data=await fetch(`https://userauth-service.herokuapp.com/register/${email}`,{
+            let data=await fetch(`https://sh-r.herokuapp.com/register/${email}`,{
             method:"POST",
             body:body,
             headers: {
@@ -81,14 +81,23 @@ export default class RegisterUser extends React.Component{
         return (
             <Col xs="12">
                 <Row className="justify-content-center">
-                    <Col md="6" xs="12">
-                        <Form onSubmit={this.register} className="box box-shadow text-center">
+                    <Col md="5" xs="12">
+                        <Form onSubmit={this.register} className=" text-center">
+                            <Col xs="12" className="header mb-3">
                             <h5 className="heading">!!E-Mail verified!!</h5>
-                            <h5 className="heading">New user form</h5>
-                            <Form.Control ref={this.username} type="text" placeholder="Enter username.." required={true} className="mb-2" />
-                            <Form.Control ref={this.password} type="password" placeholder="Enter Password.." required={true} className="mb-2" onChange={this.passwordStatus} />
-                            <Form.Control ref={this.confirm_password} type="password" placeholder="Confirm Password.." required={true} className="mb-2" onChange={this.confirmPassword} disabled={!this.state.password_entered}/>
-                            <button type="submit" className="buton mb-2" hidden={!this.state.password_confirmed}>Submit</button>
+                            </Col>
+                            <Col  xs="12" className="box box-shadow mb-3">
+                                Enter new username..
+                                <Form.Control ref={this.username} type="text" placeholder="Enter username.." required={true} className="mb-3 input" />
+                                Enter new password..
+                                <Form.Control ref={this.password} type="password" placeholder="Enter Password.." required={true} className="mb-3 input" onChange={this.passwordStatus} />
+                                Confirm your password..
+                                <Form.Control ref={this.confirm_password} type="password" placeholder="Confirm Password.." required={true} className="mb-3 input" onChange={this.confirmPassword} disabled={!this.state.password_entered}/>
+                                <button type="submit" className="buton mb-2" hidden={!this.state.password_confirmed}>Submit</button>
+                            </Col>
+                            
+                            
+                            
                         </Form>
                     </Col>
                 </Row>

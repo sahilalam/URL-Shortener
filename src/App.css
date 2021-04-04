@@ -1,10 +1,13 @@
 .text{
   font-family: 'Courier New', Courier, monospace;
-  text-shadow: 2px 2px 10px cyan;
+ 
   color: aliceblue;
+  font-size: small;
 }
 .heading{
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-weight: 800;
+  text-shadow: 2px 2px 10px cyan;
 }
 .buton{
   width: 100%;
@@ -12,35 +15,88 @@
   color:white;
   padding: 5px;
   margin:0px;
-  margin-top: 0px;
-  background-color: rgba(255, 255, 255, 0.336);
+  
+  background-color: rgba(255, 255, 255, 0);
   box-shadow: 2px 2px 10px cyan;
   border-radius: 10px;
   transition: 0.5s;
   border: 0px;
+  animation: boxShadow 3s infinite ;
+}
+@keyframes boxShadow{
+  0%{
+    box-shadow: 2px 2px 10px cyan;
+  }
+  50%{
+    box-shadow: 0px 0px 2px cyan;
+  }
+  100%{
+    box-shadow: 2px 2px 10px cyan;
+  }
 }
 .buton:hover{
-  background-color: darkturquoise;
+  background-color:darkturquoise;
   color:white;
   box-shadow: 2px 2px 30px cyan;
+  animation: boxShadowHover 3s infinite ;
+}
+@keyframes boxShadowHover{
+  0%{
+    box-shadow: 2px 2px 30px cyan;
+  }
+  50%{
+    box-shadow: 2px 2px 30px darkturquoise;
+  }
 }
 
 .nav-bar{
 
   background-color: darkslategray;
   padding: 5px;
+  position: sticky;
+  top:0px;
+  left: 0px;
+  right: 0px;
+  box-shadow: 0px 2px 10px darkslategrey;
+  z-index: 1;
 
 }
 
 .box{
   padding:10px;
-  margin: 5px;
-  background-color: rgba(255, 255, 255, 0.329);
+  margin: 0px;
+  background-color: rgba(47, 79, 79, 0.493);
   border-radius: 10px;
 }
 .box-shadow{
-  box-shadow: 2px 2px 10px cyan;
+  box-shadow: 2px 2px 10px rgb(0, 0, 0);
 }
 .text-align-left{
   text-align: left;
+}
+.text-align-right{
+  text-align: right;
+}
+.tube{
+  background-color: rgba(255, 255, 255, 0.349);
+  border-radius: 20px;
+  border: 2px solid darkturquoise;
+  box-shadow: 2px 2px 10px cyan;
+  text-align: center;
+  padding:3px;
+  width: 100%;
+}
+.header{
+  background-color: darkslategray;
+  padding: 5px;
+  box-shadow: 0px 2px 10px darkslategrey;
+  border-radius: 10px;
+}
+.input{
+  border-radius: 20px;
+  border:2px solid cyan;
+}
+.justify-text{
+  overflow-wrap:break-word;
+  text-align: justify;
 }

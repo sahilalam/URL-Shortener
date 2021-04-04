@@ -1,7 +1,6 @@
 import React from "react";
 import { Form,Row,Col ,Modal,Spinner} from "react-bootstrap";
-import Content from "./Content.js"
-import {BrowserRouter,Redirect,Route} from "react-router-dom";
+import {Redirect} from "react-router-dom";
 import Context from "./Context.js";
 
 export default class Login extends React.Component{
@@ -38,7 +37,7 @@ export default class Login extends React.Component{
                 body.push(ek+"="+ep);
             }
             body=body.join('&');
-            let data=await fetch('https://userauth-service.herokuapp.com/login',{
+            let data=await fetch('https://sh-r.herokuapp.com/login',{
                 method:'POST',
                 body:body,
                 headers: {
@@ -47,10 +46,11 @@ export default class Login extends React.Component{
 
             });
             data=await data.json();
-            if(data.data)
+            if(data.access_token)
             {
-                this.context.login();
-                this.setState({data:data.data,successful:true});
+                this.context.login(data.access_token);
+                this.setState({successful:true});
+                
             }
             else
             {
@@ -68,27 +68,29 @@ export default class Login extends React.Component{
     }
     render()
     {
-        return (
-            <Col xs="12">   
-                {this.state.successful
+        return ( 
+            window.localStorage.access_token
+            ?
+            <Redirect to="/"></Redirect>
+            : 
+                this.state.successful
                 ?
-                    
-                    <BrowserRouter>
-                        <Redirect to="/home"></Redirect>
-                        <Route path="/home">
-                            <Content data={this.state.data}/>
-                        </Route>
-                        
-                    </BrowserRouter>
-                    
+                    <Redirect to="/"></Redirect>
                 :
+                <Col xs="12"> 
                     <Row className="justify-content-center">
-                        <Col md="6" xs="12">
-                            <Form onSubmit={this.login} className="box box-shadow text-center">
+                        <Col md="5" xs="12" className="text-center">
+                            <Form onSubmit={this.login} >
+                                <Col xs="12" className="header mb-3">
                                 <h5 className="heading"> Login </h5>
-                                <Form.Control ref={this.username} type="text" placeholder="enter your username.." required={true} className="mb-2" />
-                                <Form.Control ref={this.password} type="password" placeholder="enter password.." required={true} className="mb-2" />
+                                </Col>
+                                <Col xs="12" className="box box-shadow">
+                                Enter your username..
+                                <Form.Control ref={this.username} type="text" placeholder="enter your username.." required={true} className="mb-3 input" />
+                                Enter your password..
+                                <Form.Control ref={this.password} type="password" placeholder="enter password.." required={true} className="mb-3 input" />
                                 <button type="submit" className="buton mb-2">Submit</button>
+                                </Col>   
                             </Form>
                             <Modal show={this.state.toast} onHide={this.toggleToast} backdrop="static">
                                 {
@@ -101,10 +103,7 @@ export default class Login extends React.Component{
                             </Modal> 
                         </Col>
                     </Row>
-
-                }
-                
-            </Col>
+                </Col>            
         )
     }
 }
