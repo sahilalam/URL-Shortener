@@ -4,7 +4,7 @@ import {BrowserRouter,Route,NavLink, Redirect} from "react-router-dom";
 import RegisterMail from "./register_mail.js";
 import RegisterUser from "./register_user.js";
 import Login from "./login.js";
-import {Row,Col,Button } from "react-bootstrap";
+import {Row,Col} from "react-bootstrap";
 import Context from "./Context.js";
 import Content from './Content';
 
